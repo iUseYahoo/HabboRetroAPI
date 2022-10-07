@@ -4,6 +4,7 @@ import requests
 
 def hablit_search(username):
     url = "https://hablit.net/profile/{}".format(username)
+    # You can change the hablit_sessions cookie value to your cookie or keep using this throw away account cookie
     r = requests.get(url, cookies={'hablit_session': 'eyJpdiI6InBSUVdYQlVZU3grYkxOWFpiVG41L1E9PSIsInZhbHVlIjoiZzBDU3I1N1NPSkdkSHpFQjdtVlA3VllBbkJlZGhuRkU4V1hwaVJJT0Z6N2VBTnhOemo4L1gxVTVrbWRiNTV0L1VXMVlxVGJYcDBLN0Nyb1lSeVVneERHeDJZRnFYTFdBRzVNQ0RvTEtDSVYxbGcxOVc5MENtVk5IQVg0bm1ROEkiLCJtYWMiOiJlMGMwOTMyMzY4ZjdmMTU2MTNkNjUzN2RlZTYyYTQzMzc0ZWQwOWI2MjE4OGQ0ZDAzNDlhMjNiNDQxOGJiYWYxIiwidGFnIjoiIn0%3D'})
     soup = BeautifulSoup(r.text, "html.parser")
 
@@ -42,9 +43,10 @@ def hablit_search(username):
     # else:
     #     diamonds = "Diamonds are not set on webpage."
 
-
-    raw_data = "Avatar: {}\nMotto: {}\nCoins: {}\nDuckets: {}\nDiamonds: {}".format(avatar, motto, coins, duckets, diamonds)
-    print(raw_data)
+    
+    # This is used for testing the API (Forgot I needed to use a cookie so I had no error, this was used for debugging)
+#     raw_data = "Avatar: {}\nMotto: {}\nCoins: {}\nDuckets: {}\nDiamonds: {}".format(avatar, motto, coins, duckets, diamonds)
+#     print(raw_data)
     
     return json.dumps({
         "avatar": avatar.strip('\r\n').strip("\r\n "),
