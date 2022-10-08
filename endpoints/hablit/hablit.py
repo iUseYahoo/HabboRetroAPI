@@ -4,7 +4,7 @@ import requests
 
 def hablit_search(username):
     url = "https://hablit.net/profile/{}".format(username)
-    r = requests.get(url, cookies={'hablit_session': 'eyJpdiI6InBSUVdYQlVZU3grYkxOWFpiVG41L1E9PSIsInZhbHVlIjoiZzBDU3I1N1NPSkdkSHpFQjdtVlA3VllBbkJlZGhuRkU4V1hwaVJJT0Z6N2VBTnhOemo4L1gxVTVrbWRiNTV0L1VXMVlxVGJYcDBLN0Nyb1lSeVVneERHeDJZRnFYTFdBRzVNQ0RvTEtDSVYxbGcxOVc5MENtVk5IQVg0bm1ROEkiLCJtYWMiOiJlMGMwOTMyMzY4ZjdmMTU2MTNkNjUzN2RlZTYyYTQzMzc0ZWQwOWI2MjE4OGQ0ZDAzNDlhMjNiNDQxOGJiYWYxIiwidGFnIjoiIn0%3D'})
+    r = requests.get(url, cookies={'hablit_session': 'eyJpdiI6IkYzcmlqY1BSRzlHWC82WTNMSVVQU2c9PSIsInZhbHVlIjoiYVoyVjVDTTZPNkhSSEZ6VVdqYmUzTTVlUG9PYkdwSDFTSS80Z2J1RFR0MzFtTW5SOVZBY0JqMCtpSGk5V1hzL2hieVIrN20wZ2JnamFKN3VONWlHRkJNV3ZMVGh2cWJITFBmYkR5K2piVy9DUTc2QUhaMStMb2c1RDVuU2xuQW8iLCJtYWMiOiI3Y2I1ZDBhMDIwZmQxNDhhZjY0ODk0N2RhMTlkYzYxNTlhYWY5NTYzY2QyNWUzZjc1ZTMwMDU1NzljZDllZDM3IiwidGFnIjoiIn0%3D'})
     soup = BeautifulSoup(r.text, "html.parser")
 
     motto = soup.find("h4", {"class": "text-lg font-semibold italic"})
