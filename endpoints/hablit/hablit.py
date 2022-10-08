@@ -4,9 +4,7 @@ import requests
 
 def hablit_search(username):
     url = "https://hablit.net/profile/{}".format(username)
-    
-    # Change hablit_sessions cookie value to your own, From testing it seems it stopped working aftering a couple hours.
-    r = requests.get(url, cookies={'hablit_session': 'eyJpdiI6Ik1TTFRhVUVyelN2elVISzE4Y0ZkV3c9PSIsInZhbHVlIjoiTklLVFhDaTZQNmxPZUJrT24wc28xd0tWN3BzeHJCVEpRTlg5Z0RDNEtBSFdrZXZIWjhkQkhxeENSSGdpb3VMNE54ZWxnbjJLNUhGRjlCbUpmMjRsK2VZczh5Umx3VkpYYXl4R2t5ckpxb0VHbDhOdlBQQUo1dlcyTmpSblF1SnQiLCJtYWMiOiJkYTY2ZmFkN2UwYWY1ZjRhMjBmZTQyNjY2MWVjYTcxM2MxNWRhMjIxYzY3ZDNkYzBmNWExODJjZDUwYzk2ZjRjIiwidGFnIjoiIn0%3D'})
+    r = requests.get(url, cookies={'hablit_session': 'eyJpdiI6InBSUVdYQlVZU3grYkxOWFpiVG41L1E9PSIsInZhbHVlIjoiZzBDU3I1N1NPSkdkSHpFQjdtVlA3VllBbkJlZGhuRkU4V1hwaVJJT0Z6N2VBTnhOemo4L1gxVTVrbWRiNTV0L1VXMVlxVGJYcDBLN0Nyb1lSeVVneERHeDJZRnFYTFdBRzVNQ0RvTEtDSVYxbGcxOVc5MENtVk5IQVg0bm1ROEkiLCJtYWMiOiJlMGMwOTMyMzY4ZjdmMTU2MTNkNjUzN2RlZTYyYTQzMzc0ZWQwOWI2MjE4OGQ0ZDAzNDlhMjNiNDQxOGJiYWYxIiwidGFnIjoiIn0%3D'})
     soup = BeautifulSoup(r.text, "html.parser")
 
     motto = soup.find("h4", {"class": "text-lg font-semibold italic"})
@@ -45,9 +43,8 @@ def hablit_search(username):
     #     diamonds = "Diamonds are not set on webpage."
 
 
-    # used for testing during development
-    # raw_data = "Avatar: {}\nMotto: {}\nCoins: {}\nDuckets: {}\nDiamonds: {}".format(avatar, motto, coins, duckets, diamonds)
-    # print(raw_data)
+    raw_data = "Avatar: {}\nMotto: {}\nCoins: {}\nDuckets: {}\nDiamonds: {}".format(avatar, motto, coins, duckets, diamonds)
+    print(raw_data)
     
     return json.dumps({
         "avatar": avatar.strip('\r\n').strip("\r\n "),
