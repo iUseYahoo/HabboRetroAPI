@@ -1,6 +1,7 @@
 import json
 from flask import Flask, request, jsonify, render_template
 from endpoints.hablit.hablit import hablit_search
+from handler import handle
 
 app = Flask(__name__)
 
@@ -19,16 +20,19 @@ def search_index():
 @app.route('/post/search/', methods=['POST'])
 def search_post():
     if request.method == 'POST':
+        retname = request.form['retname']
         username = request.form['username']
 
-        # check for xss < > characters
+        if "<" in retname or ">" in retname:
+            return json.dumps({'error': 'Invalid characters in retname.'})
+
         if "<" in username or ">" in username:
             return json.dumps({'error': 'Invalid characters in username.'})
 
-        if username != "" or username != None:
-            return hablit_search(username)
+        if retname != "" or username != "" or username != None:
+            return handle(retname, username)
         else:
-            return json.dumps({'error:', 'You must provide a username.'})
+            return json.dumps({'error:', 'You must provide a valid retname and username.'})
     else:
         return json.dumps({'error:', 'You cannot use this method, Please use POST instead of ' + request.method})
 
